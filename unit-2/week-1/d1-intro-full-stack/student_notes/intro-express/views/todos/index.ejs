@@ -1,0 +1,13 @@
+<body>
+    <h1>All To Dos</h1>
+    <ul>
+      <% todos.forEach(function(t) { %>
+        <li>
+          <%= t.todo %>
+            - 
+          <%= t.done ? 'done' : 'not done' %>
+        </li>
+      <% }); %>
+    </ul>
+  </body>
+  
