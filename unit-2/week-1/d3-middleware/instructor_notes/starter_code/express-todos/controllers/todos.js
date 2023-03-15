@@ -11,9 +11,30 @@ function show(req, res) {
   });
 }
 
+function newTodo(req, res){
+  res.render('todos/new', {titile: 'New Todo'})
+}
+
+function create(req, res){
+  console.log(req.body)
+  Todo.create(req.body);
+  res.redirect('/todos')
+}
+
+function deleteTodo(req, res){
+  Todo.deleteOne(req.params.id)
+  res.redirect('/todos')
+}
+
+// function name(req, res){
+//   console.log(req.params)
+// }
 
 
 module.exports = {
   index,
-  show
+  show,
+  new: newTodo,
+  create,
+  delete: deleteTodo
 };
