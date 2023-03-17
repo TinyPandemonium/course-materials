@@ -3,18 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-//it's very important to require dorenv before any other module the depends upon the properties added to process.env
-
-require('dotenv').config();
-
-//connecting fomr config/database.js which has our DATABASE_URL from .env
-
-require('./config/database');
+const methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const { config } = require('dotenv');
+var todosRouter = require('./routes/todos');
 
 var app = express();
 
@@ -22,14 +14,23 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// add middleware below the above line of code
+app.use(function(req, res, next) {
+  console.log('Hello SEI!');
+  res.locals.time = new Date().toLocaleTimeString();
+
+  next();  // Pass the request to the next middleware
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/todos', todosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

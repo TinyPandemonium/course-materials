@@ -8,6 +8,7 @@
   <title>Express To-Do</title>
 </head>
 <body>
+  <%- include('../partials/header') %>
   <h1>To-Dos as of <%= time %></h1>
 
   <ul>
@@ -18,13 +19,11 @@
     
           - 
         <%= t.done ? 'done' : 'not done' %>
-        <form action="/todos/:id<%= t.id %>?_method=DELETE"
+        <form action="/todos/<%= t.id %>?_method=DELETE"
           class="delete-form" method="POST">
           <button type="submit">X</button>
         </form>
       </li>
     <% }); %>
   </ul>
-</body>
-
-</html>
+  <%- include('../partials/footer') %>
