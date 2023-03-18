@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../instructor_notes/mongoose-movies/models"
+		},
+		{
+			"path": "../instructor_notes/mongoose-movies/public"
+		},
+		{
+			"path": "../instructor_notes/mongoose-movies/routes"
+		},
+		{
+			"path": "../instructor_notes/mongoose-movies/views"
+		}
+	],
+	"settings": {}
+}
